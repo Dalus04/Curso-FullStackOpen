@@ -1,23 +1,53 @@
-/*const Hello = (props) => {
+import { useState } from "react"
+
+const Hello = ({name, age}) => {
+  const bornYear = () => new Date().getFullYear() - age
+
   return (
     <div>
-      <p>Hello {props.name}, you are {props.age} old</p>
+      <p>
+        Hello {name}, you are {age} old
+      </p>
+      <p>
+        So were you probably born in {bornYear()}
+      </p>
     </div>
   )
-}*/
+}
+
+const Display = ({counter}) => <div>{counter}</div>
+
+const Button = ({onClick, text}) => <button onClick={onClick}>{text}</button>
 
 const App = () => {
-  const friends = [
-    { name: 'Daniel', age: 19 },
-    { name: 'Orlando', age: 20},
-  ]
-  const friend = ['Daniel', 'Orlando']
+  const name = 'Daniel'
+  const age = 19
+  const [counter, setCounter] = useState(0)
+  console.log('rendering with counter value', counter)
+  
+  const increaseByOne = () => {
+    console.log('increasing, value before', counter)
+    setCounter(counter + 1)
+  }
+
+  const decreaseByOne = () => { 
+    console.log('decreasing, value before', counter)
+    setCounter(counter - 1)
+  }
+
+  const setToZero = () => {
+    console.log('resetting to zero, value before', counter)
+    setCounter(0)
+  }
 
   return (
     <div>
-      <p>{friends[0].name} {friends[0].age}</p>
-      <p>{friends[1].name} {friends[1].age}</p>
-      <p>{friend}</p>
+      <h1>Greetings</h1>
+      <Hello name={name} age={age}/>
+      <Display counter={counter}/>
+      <Button onClick={increaseByOne} text='plus'/>
+      <Button onClick={setToZero} text='zero'/>
+      <Button onClick={decreaseByOne} text='minius'/>
     </div>
   )
 }
