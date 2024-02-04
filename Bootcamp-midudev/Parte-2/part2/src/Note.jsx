@@ -1,11 +1,8 @@
-export const Note = (props) => {
-    const {categories=[], content} = props
+export const Note = ({title, body}) => {
     return(
       <li>
-        <p>{content}</p>
-        {categories.map((category) => (
-            <small key={category}>{category}</small>
-        ))}
+        <p>{title}</p>
+        <small>{body}</small>
       </li>
     )
 }
